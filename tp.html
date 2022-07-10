@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script>
+       
+       
+       
+        function DevolverListado(url) {
+          return new Promise (function(resolve, reject){
+      var request = new XMLHttpRequest();
+      request.open('GET', url);
+      request.responseType = 'json';
+      request.onload=function(){
+         if(request.status== 200){
+             resolve(request.response);
+      
+         }
+         else{
+             reject(Error('No se pudo cargar la imagen' + request.statusText));
+      
+         }
+      
+      }
+      request.onerror=function(){
+         reject(Error('Lo sentimos, ocurrio un error'));
+      }
+      request.send();
+      });
+       }
+      
+      
+      
+     
+      
+      DevolverListado('https://aabb-181-230-219-190.ngrok.io/student/getAll')
+      .then((response)=>{
+        
+     response.forEach(element => {
+        var tbody = document.querySelector('tbody');
+      var row =  tbody.insertRow()
+      var cell1 = row.insertCell()
+      cell1.innerHTML= element.id
+
+      var cell2 = row.insertCell()
+      cell2.innerHTML= element.dni
+
+      var cell3 = row.insertCell()
+      cell3.innerHTML= element.lastName
+
+      var cell4 = row.insertCell()
+      cell4.innerHTML= element.firstName
+
+      var cell5 = row.insertCell()
+      cell5.innerHTML= element.email
+
+      var cell6 = row.insertCell()
+      cell6.innerHTML= element.cohort
+
+      var cell7 = row.insertCell()
+      cell7.innerHTML= element.status
+
+      var cell8 = row.insertCell()
+      cell8.innerHTML= element.gender
+
+      var cell9 = row.insertCell()
+      cell9.innerHTML= element.address
+
+      var cell10 = row.insertCell()
+      cell10.innerHTML= element.phone
+
+
+     });
+      
+    
+      
+      })
+      .catch((reason)=> {
+         console.log(Error(reason));
+      })
+      
+              
+              
+              
+              
+            </script>
+
+</head>
+
+    <body>
+        <div class ='container my-5 text-center'>
+            
+        
+        <div class="mt-5" >
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">id </th>
+                        <th scope="col">dni</th>
+                        <th scope="col">lastName</th>
+                        <th scope="col">firstName</th>
+                        <th scope="col"> email</th>
+                        <th scope="col">cohort </th>
+                        <th scope="col">status</th>
+                        <th scope="col">gender</th>
+                        <th scope="col">address</th>
+                        <th scope="col"> phone</th>
+                    </tr>
+                    <tbody >
+                        
+
+
+                    </tbody>
+                </thead>
+
+            </table>
+        </div>
+        
+        </div>
+
+       
+          </body>
+
+    
+    
+
+
+
+
+</html>
+
+
+
+
+
+
+
